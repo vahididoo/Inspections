@@ -1,0 +1,28 @@
+<html>
+<body>
+Don't use public class variables. Use properties instead
+<!-- tooltip end -->
+<p>
+As a best practice, Guidewire recommends that you convert public variables to properties. Properties separate the
+interface of an object from the implementation of its storage and retrieval.
+Although Gosu supports public variables for compatibility with other languages, Guidewire strongly recommends public
+properties backed by private variables instead of public variables.
+The following sample Gosu code declares a private variable within a class and exposes it as a public property by using
+the as keyword. This syntax makes automatic getter and setter property methods that the class instance variable backs.
+</p>
+<br/>
+<p>
+private var _firstName : String as FirstName // Delcare a public property as a private variable.
+</p>
+<br/>
+<p>
+Avoid declaring public variables, as the following sample Gosu code does.
+</p>
+
+<p>
+public var FirstName : String // Do not declare a public variable.
+</p>
+
+For general information, see “Properties” in the Gosu Reference Guide.
+</body>
+</html>

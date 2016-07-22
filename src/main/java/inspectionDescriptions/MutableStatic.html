@@ -1,0 +1,18 @@
+<html>
+<body>
+<p>
+Avoid static collection fields.
+</p>
+<p>
+Guidewire recommends that you do not use static scope declaration for fields
+that an object modifies during its lifetime. Static references are shared by
+all instances of the object, and misuse can lead to memory leaks.</p>
+
+<p>
+If you really require an application-scoped collection, to use as a cache, for
+example, consider refactoring the static collection as a member of a Singleton,
+or use a <tt>WeakHashMap</tt> to avoid memory leaks.
+</p>
+<!-- tooltip end -->
+</body>
+</html>

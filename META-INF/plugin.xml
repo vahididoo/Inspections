@@ -1,0 +1,369 @@
+<idea-plugin version="2">
+    <name>Gosu Inspections Plugin</name>
+    <description>Gosu Checkstyle plugin. Additional code inspections and quick fixes for the Gosu language</description>
+    <version>1.1.3</version>
+    <vendor>Guidewire</vendor>
+    <depends>com.guidewire.gosu-internal</depends>
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="107.105"/>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+
+        <!--################################################################################-->
+        <!--################################### Comments ###################################-->
+        <!--################################################################################-->
+
+
+        <!--    &lt;!&ndash;Check Trailing comments &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.comments.TrailingComments" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="comments.group.name"
+                             key="comments.name.trailingcomments" displayName="Trailing Comments"
+                             shortName="GosuTrailingComments" enabledByDefault="true" level="WARNING" />
+
+            &lt;!&ndash; Check if there are consecutive single line comments over multiple lines &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.comments.SingleLineComments" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="comments.group.name"
+                             key="comments.name.singlelinecomments" displayName="Single Line Comments"
+                             shortName="SingleLineComments" enabledByDefault="true" level="WARNING"/>
+
+
+            <localInspection implementationClass="com.gw.gosu.inspections.comments.BlockComments" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="comments.group.name"
+                             key="comments.name.blockcomments"  displayName="Block Comments"
+                             shortName="BlockComments" enabledByDefault="true" level="WARNING"/>
+
+
+            <localInspection implementationClass="com.gw.gosu.inspections.comments.JavadocComments" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="comments.group.name"
+                             key="comments.name.javadoccomments"  displayName="Javadoc Comments"
+                             shortName="JavadocComments" enabledByDefault="false" level="WARNING"/>
+
+
+            <localInspection implementationClass="com.gw.gosu.inspections.comments.GosudocComments" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="comments.group.name"
+                             key="comments.name.gosudoccomments"  displayName="GosudocComments"
+                             shortName="GosudocComments" enabledByDefault="true" level="WARNING"/>
+
+
+            &lt;!&ndash;################################################################################&ndash;&gt;
+            &lt;!&ndash;################################### Layout #####################################&ndash;&gt;
+            &lt;!&ndash;################################################################################&ndash;&gt;
+
+
+            &lt;!&ndash; Check if a line is too long &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.LineLength" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.name.linetoolong" displayName="Line Too Long"
+                             shortName="LineLength" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check first line in block body for correct indent &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.IncorrectIndentation" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.name.indent" displayName="Indentation"
+                             shortName="Indentation" enabledByDefault="true" level="WARNING" />
+
+            &lt;!&ndash; Check if a curly brace doesn't follow the coding standard &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.BracketsLayout" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.name.bracketslayout" displayName="Curly Brackets Layout"
+                             shortName="BracketsLayout" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check if a logical block isn't using curly brackets &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.CurlyBrackets" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.name.curlybrackets" displayName="Curly Brackets in Logical Blocks"
+                             shortName="CurlyBrackets" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.RedundantSemicolon" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.fix.tooltip.semicolon"  displayName="Semicolon Check"
+                             shortName="SemiColonCheck" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.WhiteSpaceBeforeLeftParenthesis" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.fix.tooltip.whitespacebeforeleftparenthesis"  displayName="WhiteSpace Before Left Parenthesis"
+                             shortName="WhiteSpaceBeforeLeftParenthesis" enabledByDefault="true" level="WARNING"/>
+
+
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.WhiteSpaceWithinParentheses" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.fix.tooltip.whiteSpacewithinparentheses"  displayName="WhiteSpaces Within Parentheses"
+                             shortName="WhiteSpaceWithinParentheses" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.WhitespaceAroundOperators" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.fix.tooltip.whitespacearoundoperators"  displayName="WhiteSpaces Around Operators"
+                             shortName="WhiteSpaceAroundOperators" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.WhitespaceBeforeTernaryOperators" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.fix.tooltip.whitespaceafterternaryoperators"  displayName="WhiteSpaces Before Ternary Operators"
+                             shortName="WhitespaceBeforeTernaryOperators" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.layout.WhitespaceAfterTernaryOperators" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="layout.group.name"
+                             key="layout.fix.tooltip.whitespacebeforeternaryoperators"  displayName="WhiteSpaces After Ternary Operators"
+                             shortName="WhitespaceAfterTernaryOperators" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash;###############################################################################################&ndash;&gt;
+            &lt;!&ndash;################################### Naming And Declarations ###################################&ndash;&gt;
+            &lt;!&ndash;###############################################################################################&ndash;&gt;
+
+
+            &lt;!&ndash; Check Class Naming Conventions &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.ClassNameFormat" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.name.classNames" displayName="Class Name"
+                             shortName="ClassNameCheck" enabledByDefault="true" level="WARNING" />
+
+            &lt;!&ndash; Check for public vars to convert to private vars with properties &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.PublicVarAsProperty" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.name.publicvarasproperty" displayName="Public Var As Property"
+                             shortName="PublicVarAsProperty" enabledByDefault="true" level="WARNING" />
+
+            &lt;!&ndash; Check if an exception has been given the type Exception, even though this is implied &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.InferExceptionType" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.name.exceptiontype" displayName="Infer Exception Type"
+                             shortName="InferExceptionType" enabledByDefault="false" level="WARNING" />
+
+
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.FunctionAndPropertyNameCapitalization" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.fix.tooltip.functionandpropertynamecapitalization"  displayName="Function And Property Name Capitalization"
+                             shortName="FunctionAndPropertyNameCapitalization" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.SingleLetterVarName" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.name.singlelettervarname"  displayName="Single Letter Var Name"
+                             shortName="SingleLetterVarName" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.ReservedKeywordInVar" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.name.reservedkeywordinvar"  displayName="Reserved Keyword In Var"
+                             shortName="ReservedKeywordInVar" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.PrivateVarNameFormat" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.fix.tooltip.privatevarnameformat" displayName="Private Var Name Format"
+                             shortName="PrivateVarNameFormat" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.naminganddeclarations.PublicVarNameFormat" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="naminganddeclarations.group.name"
+                             key="naminganddeclarations.fix.tooltip.publicvarnameformat"  displayName="Public Var Name Format"
+                             shortName="PublicVarNameFormat" enabledByDefault="true" level="WARNING"/>
+
+
+            &lt;!&ndash;######################################################################################&ndash;&gt;
+            &lt;!&ndash;################################### Potential Bugs ###################################&ndash;&gt;
+            &lt;!&ndash;######################################################################################&ndash;&gt;
+
+
+            &lt;!&ndash; Check for empty else blocks &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.potentialbugs.EmptyIfElse" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="potentialbugs.group.name"
+                             key="potentialbugs.name.else"  displayName="Empty If/Else Inspection"
+                             shortName="EmptyElse" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check for uninitialized variables &ndash;&gt;
+            <localInspection implementationClass="com.gw.gosu.inspections.potentialbugs.UninitializedVariables" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="potentialbugs.group.name"
+                             key="potentialbugs.name.uninitializedvariables"  displayName="Uninitialized Variables"
+                             shortName="UninitializedVariables" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.potentialbugs.UnusedLoopVariable" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="potentialbugs.group.name"
+                             key="potentialbugs.name.unusedloopvariable"  displayName="Unused Loop Variable"
+                             shortName="UnusedLoopVariable" enabledByDefault="true" level="WARNING"/>
+
+
+            <localInspection implementationClass="com.gw.gosu.inspections.potentialbugs.EmptyLoopBody" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="potentialbugs.group.name"
+                             key="potentialbugs.name.emptyloopbody"  displayName="Empty Loop Body"
+                             shortName="EmptyLoopBody" enabledByDefault="true" level="WARNING"/>
+
+            <localInspection implementationClass="com.gw.gosu.inspections.potentialbugs.MutableStatic" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="potentialbugs.group.name"
+                             key="potentialbugs.name.mutablestatic"  displayName="Static Collection"
+                             shortName="MutableStatic" enabledByDefault="true" level="WARNING"/>
+
+
+            &lt;!&ndash;######################################################################################&ndash;&gt;
+            &lt;!&ndash;######################################### UK rules ###################################&ndash;&gt;
+            &lt;!&ndash;######################################################################################&ndash;&gt;
+
+            &lt;!&ndash; Check for where(cond).first() &ndash;&gt;
+            <localInspection implementationClass="com.aviva.gosu.inspections.CollectionWhereFirst" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="ukrules.group.name"
+                             key="aviva.ukrule.wherefirst"  displayName="Misues where(cond).first()"
+                             shortName="WhereFirst" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check for where(cond).single() &ndash;&gt;
+            <localInspection implementationClass="com.aviva.gosu.inspections.CollectionWhereSingle" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="ukrules.group.name"
+                             key="aviva.ukrule.wheresingle"  displayName="Misues where(cond).single()"
+                             shortName="WhereSingle" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check for where(cond).HasElements &ndash;&gt;
+            <localInspection implementationClass="com.aviva.gosu.inspections.CollectionWhereHasElements" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="ukrules.group.name"
+                             key="aviva.ukrule.wherehaselements"  displayName="Misues where(cond).HasElements"
+                             shortName="WhereHasElements" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check for where(cond).Count &ndash;&gt;
+            <localInspection implementationClass="com.aviva.gosu.inspections.CollectionWhereCount" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="ukrules.group.name"
+                             key="aviva.ukrule.wherecount"  displayName="Misues where(cond).Count"
+                             shortName="WhereCount" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check for whereTypeIs(cond).Count &ndash;&gt;
+            <localInspection implementationClass="com.aviva.gosu.inspections.CollectionWhereTypeIsCount" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="ukrules.group.name"
+                             key="aviva.ukrule.wheretypeiscount"  displayName="Misues whereTypeIs(type).Count"
+                             shortName="WhereTypeIsCount" enabledByDefault="true" level="WARNING"/>
+
+            &lt;!&ndash; Check for whereTypeIs(cond).HasElements &ndash;&gt;
+            <localInspection implementationClass="com.aviva.gosu.inspections.CollectionWhereTypeIsHasElements" language="Gosu"
+                             groupPath="GosuCheckstyle"
+                             bundle="com.gw.gosu.inspections.SampleBundle"
+                             groupKey="ukrules.group.name"
+                             key="aviva.ukrule.wheretypeishaselements"  displayName="Misues whereTypeIs(type).HasElements"
+                             shortName="WhereTypeIsHasElements" enabledByDefault="true" level="WARNING"/>-->
+        <localInspection implementationClass="com.gwservices.inspections.pcf.PCFPostOnCheck" language="XML"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.pcf.group.name"
+                         key="gwservices.pcf.postonchange"
+                         displayName="Check for PostOnChange"
+                         shortName="PCFPostOnChange" enabledByDefault="true" level="WARNING"/>
+        <localInspection implementationClass="com.gwservices.inspections.pcf.PCFComplexVisibleAvailableCheck"
+                         language="XML"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.pcf.group.name"
+                         key="gwservices.pcf.complexvisibleavailable"
+                         displayName="Check for complex visible/available conditions"
+                         shortName="PCFComplexVisibleAvailable" enabledByDefault="true" level="WARNING"/>
+        <!--<localInspection implementationClass="com.gwservices.inspections.entity.CheckEntity" language="XML"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.entity.group.name"
+                         key="gwservices.entity.entityname"
+                         displayName="Check for entities"
+                         shortName="EntityName" enabledByDefault="true" level="WARNING"/>-->
+        <localInspection implementationClass="com.gwservices.inspections.gosu.CountWhere" language="Gosu"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.entity.group.name"
+                         key="gwservices.gosu.countwhere"
+                         displayName="Check for activity pattern comparison"
+                         shortName="CountWhere" enabledByDefault="true" level="WARNING"/>
+        <localInspection implementationClass="com.gwservices.inspections.gosu.SelectToCollection" language="Gosu"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.gosu.group.name"
+                         key="gwservices.gosu.selecttocollection"
+                         displayName="Check for select.toCollection.where"
+                         shortName="ActivityPatternCompare" enabledByDefault="true" level="WARNING"/>
+        <localInspection implementationClass="com.gwservices.inspections.gosu.NewDate" language="Gosu"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.gosu.group.name"
+                         key="gwservices.gosu.newdate"
+                         displayName="Check for new Date()"
+                         shortName="NewDate" enabledByDefault="true" level="WARNING"/>
+        <!--  <localInspection implementationClass="com.gwservices.inspections.gosu.CyclomaticComplexity" language="Gosu"
+                           groupPath="Gosu,GW Services Rules"
+                           bundle="com.gw.gosu.inspections.SampleBundle"
+                           groupKey="gwservices.gosu.group.name"
+                           key="gwservices.gosu.cyclomatic"
+                           displayName="Check cyclomatic complexity"
+                           shortName="NewDate" enabledByDefault="true" level="WARNING"/>-->
+        <localInspection implementationClass="com.gwservices.inspections.pcf.HardcodedLabel" language="XML"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gw.gosu.inspections.SampleBundle"
+                         groupKey="gwservices.pcf.group.name"
+                         key="gwservices.pcf.hardcodedlabel"
+                         displayName="Check for hardcoded lable"
+                         shortName="HardcodedLabel" enabledByDefault="true" level="WARNING"/>
+    </extensions>
+</idea-plugin>

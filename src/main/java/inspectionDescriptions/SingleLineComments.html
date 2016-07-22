@@ -1,0 +1,31 @@
+<html>
+<body>
+Guidewire Software recommends to use a multiline comment "/* */" instead of "//" in this case.
+<!-- tooltip end -->
+The inspection detects comments of the form:
+
+<p>
+<br/>
+// The following code<br/>
+// is an implementation of<br/>
+// a string builder<br/>
+// etc. blah blah<br/>
+</p>
+<br/>
+<p>
+This can be restructured as a single multiline comment
+</p>
+<br/>
+<p>
+<br/>
+/*<br/>
+The following code<br/>
+is an implementation of<br/>
+a string builder<br/>
+etc. blah blah<br/>
+*/<br/>
+</p>
+
+The quick fix will perform this modification
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<body>
+<p>
+Use single line comments format "//" instead of block comments format "/**/" in this case.
+    </p>     <br>
+<!-- tooltip end -->
+<p>
+If a single comment occurs and it is commented with block comment format "/**/", then the inspection will throw a warning
+and recommend to change to single comment format "//". The quickfix will fix it for you.
+</p> <br>
+
+*Example:
+<p>
+    /*Your comment here*/ (Warning) --- Quick fix --- > //Your comment here
+    </p> <br>
+
+However, the inspection excludes the case which the block comment is within a statement such as: print ("Gosu CheckStyle" /*A message*/).
+</body>
+</html>

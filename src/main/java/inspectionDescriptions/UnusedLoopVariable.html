@@ -1,0 +1,41 @@
+<html>
+<body>
+Guidewire Software recommends to avoid unused loop variables in your code
+<!-- tooltip end -->
+<p>
+A loop variable is unnecessary when using an interval<br/>
+e.g.
+</p>
+<br/>
+<p>
+for (i in 0..10) {<br/>
+  print("x")<br/>
+}
+</p>
+<br/>
+<p>
+can be replaced with (using the quick fix)
+</p>
+<br/>
+<p>
+for (0..10) {<br/>
+  print("x")<br/>
+}
+</p>
+<br/>
+<p>
+When iterating over a list, but not using the loop variable...
+e.g.
+</p>
+<br/>
+<p>
+for (i in list) {<br/>
+  print("x")<br/>
+}
+</p>
+<br/>
+<p>
+There is no quick fix for this
+</p>
+</body>
+</html>
