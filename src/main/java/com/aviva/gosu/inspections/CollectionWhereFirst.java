@@ -43,7 +43,7 @@ public class CollectionWhereFirst extends BaseLocalInspectionTool {
     @NotNull
     @Override
     public String getShortName() {
-        return "UseFirstWhere";
+        return "WhereFirst";
     }
 
     @NotNull

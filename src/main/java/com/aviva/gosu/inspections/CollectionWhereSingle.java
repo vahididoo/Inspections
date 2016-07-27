@@ -38,7 +38,7 @@ public class CollectionWhereSingle extends BaseLocalInspectionTool {
     @NotNull
     @Override
     public String getShortName() {
-        return "UseFirstWhere";
+        return "WhereSingle";
     }
 
     @NotNull

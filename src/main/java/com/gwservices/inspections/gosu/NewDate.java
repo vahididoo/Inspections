@@ -18,7 +18,7 @@ public class NewDate extends BaseLocalInspectionTool {
             @Override
             public void visitNewExpression(GosuNewExpressionImpl newExpression) {
                 if(newExpression.getType().equalsToText("java.util.Date")){
-                    holder.registerProblem(newExpression,"use of Date");
+                    holder.registerProblem(newExpression,"Use of new Date() to get the date is discouraged.");
                 }
             }
         };

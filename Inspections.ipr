@@ -36,6 +36,7 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="1.7" />
   </component>
   <component name="CopyrightManager" default="" />
   <component name="DependencyValidationManager">
@@ -49,6 +50,9 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
+  </component>
+  <component name="ErrorProneCompilerSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-Xlint:unchecked" />
   </component>
   <component name="IdProvider" IDEtalkID="734026635021874926133749A5E5610C" />
   <component name="JavadocGenerationManager">
@@ -67,6 +71,18 @@
     <option name="HEAP_SIZE" />
     <option name="LOCALE" />
     <option name="OPEN_IN_BROWSER" value="true" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
@@ -201,6 +217,7 @@
         </XML>
       </value>
     </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
   </component>
   <component name="ProjectDictionaryState">
     <dictionary name="jnowak">
@@ -222,7 +239,7 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="com.sylvanaar.idea.plugin.psiviewer.controller.project.PsiViewerProjectComponent">
     <option name="HIGHLIGHT" value="false" />

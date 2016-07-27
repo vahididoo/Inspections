@@ -42,7 +42,7 @@ public class CollectionWhereTypeIsCount extends BaseLocalInspectionTool {
     @NotNull
     @Override
     public String getShortName() {
-        return "UseHasMatch";
+        return "WhereTypeIsCount";
     }
 
     @NotNull

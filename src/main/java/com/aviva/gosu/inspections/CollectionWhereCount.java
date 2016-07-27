@@ -43,7 +43,7 @@ public class CollectionWhereCount extends BaseLocalInspectionTool {
     @NotNull
     @Override
     public String getShortName() {
-        return "UseHasMatch";
+        return "WhereCount";
     }
 
     @NotNull

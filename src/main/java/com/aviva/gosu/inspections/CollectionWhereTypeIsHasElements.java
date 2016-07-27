@@ -39,7 +39,7 @@ public class CollectionWhereTypeIsHasElements extends BaseLocalInspectionTool {
     @NotNull
     @Override
     public String getShortName() {
-        return "UseHasMatch";
+        return "WhereTypeIsHasElements";
     }
 
     @NotNull

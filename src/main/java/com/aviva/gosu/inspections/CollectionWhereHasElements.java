@@ -38,7 +38,7 @@ public class CollectionWhereHasElements extends BaseLocalInspectionTool {
     @NotNull
     @Override
     public String getShortName() {
-        return "UseHasMatch";
+        return "WhereHasElements";
     }
 
     @NotNull
