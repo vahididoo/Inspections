@@ -238,6 +238,22 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="IntelliJ IDEA Community Edition IC-129.713" project-jdk-type="IDEA JDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="Inspections" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="Inspections" />
+      <option name="VM_PARAMETERS" value="-Xmx2048m -Xms1024m -XX:MaxPermSize=250m -Dfile.encoding=UTF-8 -ea -Dgw.server.env=dev -Dgwdebug=true -Dstudio.sdkroot=C:\Guidewire\Releases\PolicyCenter\PolicyCenter804" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <log_file path="$PROJECT_DIR$/../../IdeaSandbox/system/log/idea.log" checked="false" skipped="true" show_all="false" alias="IDEA LOG" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Inspections (1)" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="false">
+      <module name="Inspections" />
+      <option name="VM_PARAMETERS" value="-Xmx2048m -Xms1024m -XX:MaxPermSize=250m -Dfile.encoding=UTF-8 -ea -Dgw.server.env=dev -Dgwdebug=true -Dstudio.sdkroot=C:\Guidewire\Releases\PolicyCenter\PolicyCenter804" />
+      <option name="PROGRAM_PARAMETERS" value="inspect E:\Documents\Guidewire\Projects\Germania\Workspace\Core\PolicyCenter804 E:\Documents\Guidewire\Projects\Germania\Workspace\Core\PolicyCenter804\.idea\inspectionProfiles\Gosu_Metrics.xml c:\tmp\inspectionresults -d E:\Documents\Guidewire\Projects\Germania\Workspace\Core\PolicyCenter804\modules\configuration\gsrc\gw\lob\pa" />
+      <log_file path="$PROJECT_DIR$/../../IdeaSandbox/system/log/idea.log" checked="false" skipped="true" show_all="false" alias="IDEA LOG" />
+      <method />
+    </configuration>
+  </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
