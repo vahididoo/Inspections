@@ -1,15 +1,16 @@
 package com.gwservices.inspections.gosu;
 
+import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.codeInspection.ex.BaseLocalInspectionTool;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiCodeBlock;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
-import gw.plugin.ij.lang.GosuElementType;
-import gw.plugin.ij.lang.parser.GosuElementTypes;
-import gw.plugin.ij.lang.psi.api.statements.typedef.IGosuMethod;
-import gw.plugin.ij.lang.psi.impl.GosuElementVisitor;
+import com.intellij.psi.PsiMethod;
+import com.intellij.psi.tree.IElementType;
+import gw.gosu.ij.psi.GosuElementVisitor;
+import gw.gosu.ij.psi.impl.source.tree.GosuElementTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,21 +27,20 @@ import java.util.Map;
  */
 public class CyclomaticComplexity extends BaseLocalInspectionTool {
 
-    private static final Map<GosuElementType, Factor> factorsMap = new HashMap<>();
+    private static final Map<IElementType, Factor> factorsMap = new HashMap<>();
 
     static {
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_ReturnStatement, new Factor(GosuElementTypes.ELEM_TYPE_ReturnStatement, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_ConditionalAndExpression, new Factor(GosuElementTypes.ELEM_TYPE_ConditionalAndExpression, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_ConditionalOrExpression, new Factor(GosuElementTypes.ELEM_TYPE_ConditionalOrExpression, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_ConditionalTernaryExpression, new Factor(GosuElementTypes.ELEM_TYPE_ConditionalTernaryExpression, false, 2));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_ReturnStatement, new Factor(GosuElementTypes.ELEM_TYPE_ReturnStatement, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_CaseClause, new Factor(GosuElementTypes.ELEM_TYPE_CaseClause, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_IfStatement, new Factor(GosuElementTypes.ELEM_TYPE_IfStatement, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_DoWhileStatement, new Factor(GosuElementTypes.ELEM_TYPE_DoWhileStatement, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_WhileStatement, new Factor(GosuElementTypes.ELEM_TYPE_WhileStatement, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_CatchClause, new Factor(GosuElementTypes.ELEM_TYPE_CatchClause, false));
-        factorsMap.put(GosuElementTypes.ELEM_TYPE_ThrowStatement, new Factor(GosuElementTypes.ELEM_TYPE_ThrowStatement, false));
-        factorsMap.put(GosuElementTypes.TT_finally, new Factor(GosuElementTypes.TT_finally, false));
+        factorsMap.put(GosuElementTypes.RETURN_STATEMENT, new Factor(GosuElementTypes.RETURN_STATEMENT, false));
+        factorsMap.put(GosuElementTypes.ANDAND, new Factor(GosuElementTypes.ANDAND, false));
+        factorsMap.put(GosuElementTypes.OROR, new Factor(GosuElementTypes.OROR, false));
+        factorsMap.put(GosuElementTypes.QUEST, new Factor(GosuElementTypes.QUEST, false, 2));
+        factorsMap.put(GosuElementTypes.CASE_KEYWORD, new Factor(GosuElementTypes.CASE_KEYWORD, false));
+        factorsMap.put(GosuElementTypes.IF_STATEMENT, new Factor(GosuElementTypes.IF_STATEMENT, false));
+        factorsMap.put(GosuElementTypes.DO_WHILE_STATEMENT, new Factor(GosuElementTypes.DO_WHILE_STATEMENT, false));
+        factorsMap.put(GosuElementTypes.WHILE_STATEMENT, new Factor(GosuElementTypes.WHILE_STATEMENT, false));
+        factorsMap.put(GosuElementTypes.CATCH_SECTION, new Factor(GosuElementTypes.CATCH_SECTION, false));
+        factorsMap.put(GosuElementTypes.THROW_STATEMENT, new Factor(GosuElementTypes.THROW_STATEMENT, false));
+        factorsMap.put(GosuElementTypes.FINALLY_KEYWORD, new Factor(GosuElementTypes.FINALLY_KEYWORD, false));
     }
 
     public int threshold = 7;
@@ -50,8 +50,11 @@ public class CyclomaticComplexity extends BaseLocalInspectionTool {
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
 
         return new GosuElementVisitor() {
+
+
+
             @Override
-            public void visitMethod(IGosuMethod method) {
+            public void visitMethod(PsiMethod method) {
                 super.visitMethod(method);
                 int complexity = 1;
                 if (method.getBody() == null) {
@@ -60,65 +63,15 @@ public class CyclomaticComplexity extends BaseLocalInspectionTool {
 
                 complexity = processElements(method.getChildren(), complexity);
 
-                if (method.getReturnType() != null && !method.getReturnType().equals(GosuElementTypes.TT_void)) {
+                if (method.getReturnType() != null && !method.getReturnType().equals(GosuElementTypes.VOID_KEYWORD)) {
                     complexity--;
                 }
 
                 if (complexity > threshold) {
-                    holder.registerProblem(method.getNameIdentifier(), "Cyclomatic complexity " + complexity + " exceeds " + threshold);
+                    holder.registerProblem(method.getNameIdentifier(), "Cyclomatic complexity " + complexity + " exceeds " + threshold, ProblemHighlightType.INFORMATION);
                 }
-                Logger.getInstance(this.getClass()).info("Complexity factor:" + complexity);
-                System.out.printf("Class: " + method.getContainingClass().getName() + ", Method :" + method.getName() + ", Complexity:" + complexity + "\n");
-            }
-/*
-
-            private int processElements(PsiElement[] children, int complexity) {
-
-                for (PsiElement psiElement : children) {
-                    if (psiElement.getNode().getElementType().equals(GosuElementTypes.ELEM_TYPE_SwitchStatement)
-                            || psiElement.getNode().getElementType().equals(GosuElementTypes.ELEM_TYPE_CaseClause)) {
-                        complexity = processElements(psiElement.getChildren(), complexity);
-                    }
-                    if (isOfInterest(psiElement)) {
-                        complexity++;
-                        if (psiElement.getChildren() != null) {
-                            complexity = processElements(psiElement.getChildren(), complexity);
-                        }
-                    } else if (psiElement instanceof PsiStatement) {
-                        complexity = processStatement((PsiStatement) psiElement, complexity);
-                    }
-                }
-                return complexity;
             }
 
-            private boolean isOfInterest(PsiElement psiElement) {
-
-                return elementTypes.contains(psiElement.getNode().getElementType());
-            }
-
-            private int processStatement(PsiStatement psiStatement, int complexity) {
-                if (psiStatement instanceof GosuIfStatementImpl ||
-                        psiStatement instanceof GosuDoWhileStatementImpl ||
-                        psiStatement instanceof GosuWhileStatementImpl) {
-                    List<PsiCodeBlock> codeBlocks = getPsiCodeBlock(psiStatement);
-                    for (PsiCodeBlock codeBlock : codeBlocks) {
-                        complexity = processElements(codeBlock.getChildren(), ++complexity);
-                    }
-                }
-                return complexity;
-            }
-
-
-            private List<PsiCodeBlock> getPsiCodeBlock(PsiStatement psiStatement) {
-                List<PsiCodeBlock> codeBlocks = new ArrayList<>();
-                for (PsiElement psiElement : psiStatement.getChildren()) {
-                    if (psiElement instanceof PsiCodeBlock) {
-                        codeBlocks.add((PsiCodeBlock) psiElement);
-                    }
-                }
-                return codeBlocks;
-            }
-*/
 
             private int processElements(PsiElement[] elements, int complexity) {
                 for (PsiElement psiElement : elements) {
@@ -162,16 +115,16 @@ public class CyclomaticComplexity extends BaseLocalInspectionTool {
 
 
     private static class Factor {
-        private final GosuElementType elementType;
+        private final IElementType elementType;
         private boolean needsBlock;
         private int factorCount;
 
-        public Factor(GosuElementType elementType, boolean needsBlock) {
+        public Factor(IElementType elementType, boolean needsBlock) {
             this(elementType, needsBlock, 1);
 
         }
 
-        public Factor(GosuElementType elementType, boolean needsBlock, int factorCount) {
+        public Factor(IElementType elementType, boolean needsBlock, int factorCount) {
             this.elementType = elementType;
             this.needsBlock = needsBlock;
             this.factorCount = factorCount;

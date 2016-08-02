@@ -1,0 +1,12 @@
+<html>
+<body>
+Use Collection.hasMatch(...) instead.
+<!-- tooltip end -->
+<p>
+    This is a performance consideration .Collection.whereTypeIs(...).count first
+    retrieves all items that match the condition and then returns the number of items.
+    Instead hasMatch will return as soon as it finds the first item that matches
+    the condition.
+</p>
+</body>
+</html>

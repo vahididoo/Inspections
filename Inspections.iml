@@ -9,23 +9,14 @@
       <sourceFolder url="file://$MODULE_DIR$/META-INF" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/aviva/gosu" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/gw/gosu" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/gwservices/inspections/entity" />
       <excludeFolder url="file://$MODULE_DIR$/src/test" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library" scope="TEST">
-      <library name="mockito-all-1.9.5">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.9.5.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/mockito-core-1.10.19.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.9.5.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/mockito-core-1.10.19.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
+    <orderEntry type="jdk" jdkName="IntelliJ IDEA Community Edition IC-143.2287.1" jdkType="IDEA JDK" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

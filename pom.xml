@@ -14,18 +14,18 @@
     </properties>
 
     <repositories>
-    <repository>
-        <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-        </releases>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
 
 
-        <id>nexusSnapshots</id>
-        <name>Nexus Snapshots</name>
-        <url>http://nexus.guidewire.com/content/groups/public/</url>
-        <layout>default</layout>
+            <id>nexusSnapshots</id>
+            <name>Nexus Snapshots</name>
+            <url>http://nexus.guidewire.com/content/groups/public/</url>
+            <layout>default</layout>
         </repository>
 
         <repository>
@@ -53,7 +53,7 @@
 
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.guidewire.studio</groupId>
             <artifactId>idea-gosu-plugin</artifactId>
             <version>3.6</version>
@@ -73,11 +73,11 @@
             <scope>system</scope>
             <systemPath>${env.IDEA_HOME}/lib/annotations.jar</systemPath>
         </dependency>
-        <!--<dependency>
+        &lt;!&ndash;<dependency>
             <groupId>org.jetbrains.intellij</groupId>
             <artifactId>annotations</artifactId>
             <version>117.157</version>
-        </dependency>-->
+        </dependency>&ndash;&gt;
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>openapi</artifactId>
@@ -135,11 +135,11 @@
             <systemPath>${env.IDEA_HOME}/lib/picocontainer.jar</systemPath>
         </dependency>
 
-        <!--<dependency>
+        &lt;!&ndash;<dependency>
             <groupId>org.jetbrains.intellij</groupId>
             <artifactId>intellij-core</artifactId>
             <version>117.157</version>
-        </dependency>-->
+        </dependency>&ndash;&gt;
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -157,7 +157,7 @@
         <dependency>
             <groupId>org.gosu-lang.gosu</groupId>
             <artifactId>gosu-core</artifactId>
-            <version>1.2</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.gosu-lang.gosu</groupId>
@@ -175,36 +175,36 @@
             <groupId>org.gosu-lang.gosu</groupId>
             <artifactId>ij-compiler-api</artifactId>
             <version>1.2</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
     <build>
 
         <plugins>
-       <!-- <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>2.6</version>
-            <executions>
-                <execution>
-                    <id>copy-plugin-xml</id>
-                    <phase>process-resources</phase>
-                    <goals>
-                        <goal>copy-resources</goal>
-                    </goals>
-                    <configuration>
-                        <outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
-                        <resources>
-                            <resource>
-                                <directory>META-INF</directory>
-                                <filtering>true</filtering>
-                            </resource>
-                        </resources>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin> -->
-         <plugin>
+            <!-- <plugin>
+                 <artifactId>maven-resources-plugin</artifactId>
+                 <version>2.6</version>
+                 <executions>
+                     <execution>
+                         <id>copy-plugin-xml</id>
+                         <phase>process-resources</phase>
+                         <goals>
+                             <goal>copy-resources</goal>
+                         </goals>
+                         <configuration>
+                             <outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+                             <resources>
+                                 <resource>
+                                     <directory>META-INF</directory>
+                                     <filtering>true</filtering>
+                                 </resource>
+                             </resources>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin> -->
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -212,7 +212,7 @@
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
                     <!-- <encoding>UTF-8</encoding> -->
-               </configuration>
+                </configuration>
                 <executions>
                     <execution>
                         <id>make-assembly</id>
@@ -244,7 +244,7 @@
                     </execution>
                 </executions>
             </plugin> -->
-    </plugins>
+        </plugins>
 
         <directory>target</directory>
         <outputDirectory>${project.build.directory}/classes</outputDirectory>
@@ -263,5 +263,6 @@
             </resource>
         </resources>
     </build>
+
 
 </project>
