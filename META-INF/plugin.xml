@@ -15,6 +15,10 @@
     </application-components>
     <project-components>
         <!-- Add your project components here -->
+
+        <component>
+            <implementation-class>com.gwservices.inspections.gosu.scope.Initializer</implementation-class>
+        </component>
     </project-components>
     <actions>
         <!-- Add your actions here -->
@@ -24,20 +28,15 @@
 
 
         <!--################################################################################-->
-        <!--################################### Comments ###################################-->
+        <!--################################### Custom Scopes ##############################-->
         <!--################################################################################-->
 
-
-
-
+        <customScopesProvider implementation="com.gwservices.inspections.gosu.scope.GWScopeProvider"/>
         <!--######################################################################################-->
         <!--######################################### GW Services Rules ###################################-->
         <!--######################################################################################-->
 
-
-
-
-
+        <inspectionsReportConverter implementation="com.gwservices.inspections.report.ExcelInspectionConverter"/>
         <localInspection
                 implementationClass="com.gwservices.inspections.pcf.CheckPostOnCheck"
                 language="XML"
@@ -123,7 +122,7 @@
                 level="WARNING"/>
 
         <localInspection
-                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereHasElements"
+                implementationClass="com.gwservices.inspections.gosu.collections.CheckWhereWithLimitingFunction"
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
@@ -132,45 +131,9 @@
                 displayName="Use of where(...).HasElements"
                 shortName="CheckCollectionWhereHasElements"
                 enabledByDefault="true" level="WARNING"/>
+
         <localInspection
-                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereSingle"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
-                key="gwservices.gosu.collections.where.single"
-                displayName="Use of where(...).single()"
-                shortName="CheckCollectionWhereSingle" enabledByDefault="true"
-                level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereWhereTypeIs"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
-                key="gwservices.gosu.collection.whereWhereTypeIs"
-                shortName="CheckCollectionWhereWhereTypeIs"
-                enabledByDefault="true" level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereTypeIsHasElements"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
-                key="gwservices.gosu.collections.wheretypeis.haselements"
-                shortName="CheckCollectionWhereTypeIsHasElements"
-                enabledByDefault="true" level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereFirst"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
-                key="gwservices.gosu.collections.where.first"
-                shortName="CheckCollectionWhereFirst"
-                enabledByDefault="true" level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereCount"
+                implementationClass="com.gwservices.inspections.gosu.collections.CheckCollectionWhereCountEqualsOneOrZero"
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
@@ -180,6 +143,41 @@
                 shortName="CheckCollectionWhereCount" enabledByDefault="true"
                 level="WARNING"/>
 
-
+        <localInspection
+                implementationClass="com.gwservices.inspections.gosu.query.CheckSelectWithLimitingFunctions"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.collection.group.name"
+                key="gwservices.gosu.query.select.countwhere"
+                shortName="CheckSelectCountWhereEqualsZeroOrOne" enabledByDefault="true"
+                level="WARNING"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.gosu.CheckNullsafe"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.collection.group.name"
+                key="gwservices.gosu.nullsafe"
+                shortName="CheckNullsafe" enabledByDefault="true"
+                level="WARNING"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.util.TestInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.collection.group.name"
+                key="gwservices.testinspection"
+                shortName="TestInspection" enabledByDefault="true"
+                level="WARNING"/>
+        <globalInspection
+                implementationClass="com.gwservices.inspections.file.FileDifferenceFromBaseInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.general.group.name"
+                key="gwservices.general.filesize"
+                shortName="FileDifferenceFromBase" enabledByDefault="true"
+                level="WARNING"/>
     </extensions>
 </idea-plugin>

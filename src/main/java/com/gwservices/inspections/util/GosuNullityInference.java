@@ -15,28 +15,17 @@
  */
 package com.gwservices.inspections.util;
 
-import com.intellij.codeInsight.AnnotationUtil;
-import com.intellij.codeInsight.NullableNotNullManager;
-import com.intellij.codeInspection.dataFlow.MethodContract;
-import com.intellij.codeInspection.dataFlow.NullityInference;
-import com.intellij.codeInspection.dataFlow.Nullness;
-import com.intellij.openapi.util.Computable;
-import com.intellij.openapi.util.Condition;
-import com.intellij.openapi.util.RecursionManager;
+import com.intellij.codeInsight.*;
+import com.intellij.codeInspection.dataFlow.*;
+import com.intellij.openapi.util.*;
 import com.intellij.psi.*;
-import com.intellij.psi.util.CachedValueProvider;
-import com.intellij.psi.util.CachedValuesManager;
-import com.intellij.psi.util.PsiModificationTracker;
-import com.intellij.util.containers.ContainerUtil;
-import gw.gosu.ij.psi.GosuRecursiveElementWalkingVisitor;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.psi.util.*;
+import com.intellij.util.containers.*;
+import gw.gosu.ij.psi.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.*;
+import java.util.concurrent.atomic.*;
 
 /**
  * @author peter
@@ -101,6 +90,19 @@ public class GosuNullityInference extends NullityInference {
                         } else {
                             delegates.add(target);
                         }
+                    }
+                    if (value instanceof PsiReferenceExpression) {
+                        PsiElement resolve = value.getReference().resolve();
+                        if (resolve instanceof PsiLocalVariable) {
+                            Nullness nullness = inferNullity((PsiLocalVariable) resolve);
+                            if (nullness.equals(Nullness.NULLABLE)) {
+                                hasNulls.set(true);
+                            } else if (nullness.equals(Nullness.NOT_NULL)) {
+                                hasNotNulls.set(true);
+                            } else {
+                                hasUnknowns.set(true);
+                            }
+                        }
                     } else {
                         hasUnknowns.set(true);
                     }
@@ -109,7 +111,8 @@ public class GosuNullityInference extends NullityInference {
 
                 private boolean containsNulls(PsiExpression value) {
                     if (value instanceof PsiConditionalExpression) {
-                        return containsNulls(((PsiConditionalExpression) value).getElseExpression()) || containsNulls(((PsiConditionalExpression) value).getThenExpression());
+                        return containsNulls(((PsiConditionalExpression) value).getElseExpression()) || containsNulls
+                                (((PsiConditionalExpression) value).getThenExpression());
                     }
                     if (value instanceof PsiParenthesizedExpression) {
                         return containsNulls(((PsiParenthesizedExpression) value).getExpression());
@@ -130,6 +133,7 @@ public class GosuNullityInference extends NullityInference {
                     hasErrors.set(true);
                     super.visitErrorElement(element);
                 }
+
             });
 
             if (hasNulls.get()) {
@@ -177,18 +181,21 @@ public class GosuNullityInference extends NullityInference {
                     if (text != null) {
                         try {
                             final int paramCount = method.getParameterList().getParametersCount();
-                            List<MethodContract> applicable = ContainerUtil.filter(MethodContract.parseContract(text), new Condition<MethodContract>() {
+                            List<MethodContract> applicable = ContainerUtil.filter(MethodContract.parseContract(text)
+                                    , new Condition<MethodContract>() {
                                 @Override
                                 public boolean value(MethodContract contract) {
                                     return contract.arguments.length == paramCount;
                                 }
                             });
-                            return Result.create(applicable, contractAnno, method, PsiModificationTracker.JAVA_STRUCTURE_MODIFICATION_COUNT);
+                            return Result.create(applicable, contractAnno, method, PsiModificationTracker
+                                    .JAVA_STRUCTURE_MODIFICATION_COUNT);
                         } catch (Exception ignored) {
                         }
                     }
                 }
-                return Result.create(Collections.<MethodContract>emptyList(), method, PsiModificationTracker.JAVA_STRUCTURE_MODIFICATION_COUNT);
+                return Result.create(Collections.<MethodContract>emptyList(), method, PsiModificationTracker
+                        .JAVA_STRUCTURE_MODIFICATION_COUNT);
             }
         });
     }
@@ -196,5 +203,27 @@ public class GosuNullityInference extends NullityInference {
     @Nullable
     public static PsiAnnotation findContractAnnotation(@NotNull PsiMethod method) {
         return AnnotationUtil.findAnnotationInHierarchy(method, Collections.singleton(Contract.class.getName()));
+    }
+
+    public static Nullness inferNullity(PsiLocalVariable resolve) {
+        if (resolve.getInitializer() == null || "null".equalsIgnoreCase(resolve.getInitializer().getText())) {
+            return Nullness.NULLABLE;
+        }
+        PsiReference reference = resolve.getInitializer().getReference();
+        if (reference != null) {
+            PsiElement resolvedRereference = reference.resolve();
+            if (resolvedRereference instanceof PsiMethodCallExpression) {
+                PsiMethod method = (PsiMethod) ((PsiMethodCallExpression) resolvedRereference).getMethodExpression()
+                                                                                              .resolve();
+                return doInferNullity(method);
+            } else if (resolvedRereference instanceof PsiLocalVariable) {
+                return inferNullity((PsiLocalVariable) resolvedRereference);
+            }
+        }
+        if (resolve.getInitializer() instanceof PsiMethodCallExpression) {
+            PsiMethod psiMethod = ((PsiMethodCallExpression) resolve.getInitializer()).resolveMethod();
+            return inferNullity(psiMethod);
+        }
+        return Nullness.UNKNOWN;
     }
 }

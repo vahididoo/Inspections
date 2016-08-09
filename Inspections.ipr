@@ -225,7 +225,7 @@
         </XML>
       </value>
     </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Vahid" />
   </component>
   <component name="ProjectDictionaryState">
     <dictionary name="jnowak">
@@ -256,9 +256,10 @@
     </configuration>
     <configuration default="false" name="Inspections (1)" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="false">
       <module name="Inspections" />
-      <option name="VM_PARAMETERS" value="-Xmx2048m -Xms1024m -XX:MaxPermSize=250m -Dfile.encoding=UTF-8 -ea -Dgw.server.env=dev -Dgwdebug=true -Dstudio.sdkroot=C:\Guidewire\Releases\PolicyCenter\PolicyCenter804" />
-      <option name="PROGRAM_PARAMETERS" value="inspect E:\Documents\Guidewire\Projects\Germania\Workspace\Core\PolicyCenter804 E:\Documents\Guidewire\Projects\Germania\Workspace\Core\PolicyCenter804\.idea\inspectionProfiles\Gosu_Metrics.xml c:\tmp\inspectionresults -d E:\Documents\Guidewire\Projects\Germania\Workspace\Core\PolicyCenter804\modules\configuration\gsrc\gw\lob\pa" />
-      <log_file path="$PROJECT_DIR$/../../IdeaSandbox/v9/system/log/idea.log" checked="false" skipped="true" show_all="false" alias="IDEA LOG" />
+      <option name="VM_PARAMETERS" value="-Xmx2048m -Xms1024m -Xbootclasspath/a:../lib/boot.jar -XX:ReservedCodeCacheSize=64m -ea -Didea.properties.file=$PROJECT_DIR$/../PolicyCenter900/.idea/settings/idea.properties -Dstudio.sdkroot=$PROJECT_DIR$/../PolicyCenter900 -Didea.plugins.compatible.build=143.2287.1 -Dfile.encoding=UTF-8 -Dide.tooltip.dismissDelay=60000 -Dapple.laf.useScreenMenuBar=true" />
+      <option name="PROGRAM_PARAMETERS" value="inspect E:\Workspace\Guidewire\PolicyCenter900 &quot;E:\Workspace\IdeaSandbox\v9\config\inspection\Default.xml&quot; c:\tmp\inspectionresults" />
+      <alternative-path path="IntelliJ IDEA Community Edition IC-143.2287.1" alternative-path-enabled="true" />
+      <log_file path="$PROJECT_DIR$/../../IdeaSandbox/v9/system/log/idea.log" checked="true" skipped="true" show_all="false" alias="IDEA LOG" />
       <method />
     </configuration>
   </component>
@@ -276,6 +277,13 @@
   <component name="libraryTable">
     <library name="Gosu Plug-In (Studio)">
       <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="ij-studio-gradle-plugins-0.0.11">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/repository/com/guidewire/studio/ij-studio-gradle-plugins/0.0.11/ij-studio-gradle-plugins-0.0.11.jar!/" />
+      </CLASSES>
       <JAVADOC />
       <SOURCES />
     </library>
@@ -576,9 +584,64 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/gosu-lang/gosu/ij-compiler-api/1.2/ij-compiler-api-1.2-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="org.apache.commons:commons-csv:1.4" type="repository">
+      <properties maven-id="org.apache.commons:commons-csv:1.4" />
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/commons-csv-1.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/lib/commons-csv-1.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/lib/commons-csv-1.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.apache.poi:ooxml-schemas:1.3" type="repository">
+      <properties maven-id="org.apache.poi:ooxml-schemas:1.3" />
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/ooxml-schemas-1.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/xmlbeans-2.3.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/stax-api-1.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/lib/ooxml-schemas-1.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.apache.poi:poi-ooxml:3.14" type="repository">
+      <properties maven-id="org.apache.poi:poi-ooxml:3.14" />
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/poi-ooxml-3.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/poi-3.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/poi-ooxml-schemas-3.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/xmlbeans-2.6.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/stax-api-1.0.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/curvesapi-1.03.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/lib/poi-ooxml-3.14-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/lib/poi-ooxml-3.14-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="org.mockito:mockito-all:1.9.5" type="repository">
       <properties maven-id="org.mockito:mockito-all:1.9.5" />
       <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="studio lib">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/trove4j.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/bootstrap.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/extensions.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/util.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/jdom.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/log4j.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../PolicyCenter900/studio/sdk/lib/jna.jar!/" />
+      </CLASSES>
       <JAVADOC />
       <SOURCES />
     </library>

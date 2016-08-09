@@ -1,7 +1,6 @@
 package com.gwservices.inspections.gosu;
 
-import com.intellij.codeInspection.ProblemHighlightType;
-import com.intellij.codeInspection.ProblemsHolder;
+import com.intellij.codeInspection.*;
 import com.intellij.codeInspection.ex.BaseLocalInspectionTool;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiCodeBlock;
@@ -44,6 +43,8 @@ public class CyclomaticComplexity extends BaseLocalInspectionTool {
     }
 
     public int threshold = 7;
+
+
 
     @NotNull
     @Override

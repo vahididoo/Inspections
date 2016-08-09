@@ -1,0 +1,8 @@
+<html>
+<body>
+Use of collection.Where(...) with subsequent limiting functions.
+<!-- tooltip end -->
+<p>This causes performance degradation. Where has already traversed the base collection and now the limiting function is
+    traversing the result collection. Instead, combine the limiting function in where criteria.</p>
+</body>
+</html>
