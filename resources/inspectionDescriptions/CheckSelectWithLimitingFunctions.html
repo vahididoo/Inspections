@@ -1,7 +1,12 @@
 <html>
 <body>
-Use of select(...).countWhere(...).
+Checks <pre>Select().where(...)</pre> style method calls.
 <!-- tooltip end -->
-<p>Instead, narrow the select criteria.</p>
+<p>
+    These calls after select are performance impacting since the query is executed first and then results are limited by
+    the subsequent function. Instead, consider limiting the query results using a where clause.
+</p>
+
+
 </body>
 </html>

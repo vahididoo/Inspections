@@ -11,7 +11,7 @@ import org.jetbrains.annotations.*;
 /**
  * Created by vmansoori on 8/1/2016.
  */
-public abstract class BaseCallerCalleeInspection extends BaseLocalInspectionTool {
+public abstract class BaseCallerCalleeChecker extends BaseLocalInspectionTool {
     protected abstract boolean isCallerOfInterestedType(PsiType returnType);
 
     protected abstract boolean isCalledOfInterestedType(PsiType returnType);
@@ -70,18 +70,18 @@ public abstract class BaseCallerCalleeInspection extends BaseLocalInspectionTool
     }
 
     protected void checkComparisonWithOneOrZero(@NotNull PsiBinaryExpression expression, ProblemsHolder holder) {
-        PsiExpression rOperand = expression.getROperand();
+      PsiExpression rOperand = expression.getROperand();
         if (rOperand != null) {
             if (rOperand.getType() != null && (rOperand.getType().equalsToText("int") || rOperand.getType()
                                                                                                  .equalsToText
                                                                                                          ("byte"))) {
-                if (rOperand.getText() != null && (rOperand.getText().equals("1") && (expression
+                if (rOperand.getText() != null && ((rOperand.getText().equals("1") && (expression
                         .getOperationTokenType().equals(GosuElementTypes.EQEQ) || expression.getOperationTokenType()
                                                                                             .equals(GosuElementTypes
                                                                                                     .LT))) ||
                         (rOperand.getText().equals("0") && (expression.getOperationTokenType().equals
                                 (GosuElementTypes.EQEQ) || expression.getOperationTokenType().equals(GosuElementTypes
-                                .GT)))) {
+                                .GT))))) {
                     PsiElement lOperand = expression.getLOperand();
                     if (lOperand.getNode() != null) {
                         if (lOperand.getNode().getElementType().equals(GosuElementTypes.METHOD_CALL_EXPRESSION)) {
@@ -117,7 +117,7 @@ public abstract class BaseCallerCalleeInspection extends BaseLocalInspectionTool
                     PsiMethod resolve = ((PsiMethodCallExpression) firstChild).resolveMethod();
                     if (resolve != null && resolve instanceof PsiMethod && (isCallerOfInterestedName(resolve.getName
                             ())) && isCallerOfInterestedType(resolve.getReturnType())) {
-                        registerProblem(expression, holder);
+                        registerProblem(element.getParent(), holder);
                     }
                 } else if (firstChild instanceof PsiReferenceExpression) {
                     PsiType psiType = ((PsiReferenceExpression) firstChild).getType();

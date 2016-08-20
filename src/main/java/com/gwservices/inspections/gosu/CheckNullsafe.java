@@ -80,7 +80,7 @@ public class CheckNullsafe extends BaseLocalInspectionTool {
         } else if (nullness.equals(Nullness.UNKNOWN)) {
             holder.registerProblem(expression, "Expression has the potential to throw NPE. Check " + "" + "" + "" +
                     "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" +
-                    "for " + "" + "" + "" + "" + "null" + "" + ".", ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
+                    "for " + "" + "" + "" + "" + "null" + "" + ".", ProblemHighlightType.LIKE_UNKNOWN_SYMBOL);
         }
     }
 
@@ -89,7 +89,8 @@ public class CheckNullsafe extends BaseLocalInspectionTool {
             return false;
         }
         PsiElement enclosingStatement = expression.getParent();
-        if (enclosingStatement instanceof PsiIfStatement) {
+        if (enclosingStatement instanceof PsiIfStatement && ((PsiIfStatement) enclosingStatement).getCondition()
+                instanceof PsiBinaryExpression) {
             PsiBinaryExpression condition = (PsiBinaryExpression) ((PsiIfStatement) enclosingStatement).getCondition();
             if (condition.getROperand().getText().equalsIgnoreCase("null")) {
                 PsiExpression lOperand = condition.getLOperand();

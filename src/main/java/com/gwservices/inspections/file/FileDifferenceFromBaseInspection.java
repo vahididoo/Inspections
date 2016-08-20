@@ -16,7 +16,8 @@ public class FileDifferenceFromBaseInspection extends GlobalSimpleInspectionTool
             problemsHolder, @NotNull GlobalInspectionContext globalContext, @NotNull ProblemDescriptionsProcessor
             problemDescriptionsProcessor) {
 
-        if (file != null && file.getVirtualFile() != null) {
+        if (file != null && file.getVirtualFile() != null && !file.getVirtualFile().getCanonicalPath().contains
+                ("/generated/")) {
             VirtualFile virtualFile = file.getVirtualFile();
             long bloatingFactor = GWProductManager.getInstance(manager.getProject()).getBloatingFactor(virtualFile);
             if (bloatingFactor > 0.0) {

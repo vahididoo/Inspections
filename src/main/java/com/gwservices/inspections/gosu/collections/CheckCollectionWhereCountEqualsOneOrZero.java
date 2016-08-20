@@ -44,7 +44,7 @@ public class CheckCollectionWhereCountEqualsOneOrZero extends BaseCollectionChec
 
     @Override
     protected void registerProblem(PsiElement expression, ProblemsHolder holder) {
-        holder.registerProblem(expression, "Use of where with limiting subsequent functions.", ProblemHighlightType
+        holder.registerProblem(expression, "Use of <code>#ref</code>.", ProblemHighlightType
                 .GENERIC_ERROR_OR_WARNING);
     }
 

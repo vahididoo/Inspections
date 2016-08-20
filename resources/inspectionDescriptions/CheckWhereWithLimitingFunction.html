@@ -1,0 +1,39 @@
+<html>
+<body>
+Checks <code>Collection.where(...).first()</code> style method calls.
+<!-- tooltip end -->
+<p>
+    These calls after Where condition are performance impacting. The collection has to be traversed first to satisfy
+    Where
+    and then the limiting function will be called on the returned collection.
+</p>
+<table>
+    <tr>
+        <th>Instead of</th>
+        <th>Use this</th>
+    </tr>
+    <tr>
+        <td>Where(...).first()</td>
+        <td>firstWhere(...)</td>
+    </tr>
+    <tr>
+        <td>Where(...).single()</td>
+        <td>singleWhere(...)</td>
+    </tr>
+    <tr>
+        <td>Where(...).whereTypeIs(...)</td>
+        <td>Combine both conditions</td>
+    </tr>
+    <tr>
+        <td>Where(...).hasElement</td>
+        <td>hasMathc(...)</td>
+    </tr>
+    <tr>
+        <td>Where(...).count</td>
+        <td>countWhere(...)</td>
+    </tr>
+</table>
+
+
+</body>
+</html>

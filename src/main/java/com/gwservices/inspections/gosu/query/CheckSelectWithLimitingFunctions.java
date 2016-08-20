@@ -1,5 +1,6 @@
 package com.gwservices.inspections.gosu.query;
 
+import com.gwservices.inspections.gosu.*;
 import com.intellij.codeInspection.*;
 import com.intellij.psi.*;
 
@@ -8,9 +9,9 @@ import java.util.*;
 /**
  * Created by vmansoori on 7/30/2016.
  */
-public class CheckSelectWithLimitingFunctions extends CheckSelectToLimitingFunctions {
+public class CheckSelectWithLimitingFunctions extends BaseSelectChecker {
 
-    private static final List<String> interestedKeywords = Arrays.asList("first", "firstresult", "getfirstfesult",
+    private static final List<String> interestedKeywords = Arrays.asList("first", "firstresult", "getfirstresult",
             "firstwhere", "getatmostonerow", "single", "singlewhere", "where", "wheretypeis");
 
     @Override

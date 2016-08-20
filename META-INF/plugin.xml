@@ -1,9 +1,8 @@
 <idea-plugin version="2">
     <name>Gosu Inspections Plugin</name>
-    <description>Gosu Checkstyle plugin (Ferrite). Additional code inspections
-        and quick fixes for the Gosu language
+    <description>Gosu Inspection plugin
     </description>
-    <version>2.0.1</version>
+    <version>2.0.4</version>
     <vendor>Guidewire</vendor>
     <depends>gw.gosu.ij</depends>
 
@@ -42,7 +41,7 @@
                 language="XML"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.pcf.group.name"
+                groupKey="gwservices.group.name.pcf"
                 key="gwservices.pcf.postonchange"
                 displayName="Check for PostOnChange"
                 shortName="CheckPostOnCheck" enabledByDefault="true"
@@ -52,7 +51,7 @@
                 language="XML"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.pcf.group.name"
+                groupKey="gwservices.group.name.pcf"
                 key="gwservices.pcf.complexvisibleavailable"
                 displayName="Check for complex visible/available conditions"
                 shortName="CheckComplexVisibleAvailableCheck"
@@ -63,7 +62,7 @@
                 language="XML"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.pcf.group.name"
+                groupKey="gwservices.group.name.pcf"
                 key="gwservices.pcf.hardcodedlabel"
                 displayName="Check for hardcoded lable"
                 shortName="CheckHardcodedLabel" enabledByDefault="true"
@@ -73,7 +72,7 @@
                 language="XML"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.pcf.group.name"
+                groupKey="gwservices.group.name.pcf"
                 key="gwservices.pcf.CheckTooMuchCodeInPCF"
                 displayName="Too much code in pcf"
                 shortName="CheckTooMuchCodeInPCF" enabledByDefault="true"
@@ -83,28 +82,17 @@
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.group.name"
+                groupKey="gwservices.group.name.gosu"
                 key="gwservices.gosu.newdate"
                 displayName="Check for new Date()"
                 shortName="CheckUseOfNewDate" enabledByDefault="true"
                 level="WARNING"/>
         <localInspection
-                implementationClass="com.gwservices.inspections.gosu.CyclomaticComplexity"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.group.name"
-                key="gwservices.gosu.cyclomatic"
-                displayName="Check cyclomatic complexity"
-                shortName="CyclomaticComplexity" enabledByDefault="true"
-                level="WARNING"/>
-
-        <localInspection
                 implementationClass="com.gwservices.inspections.gosu.CheckProductModelSynch"
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.group.name"
+                groupKey="gwservices.group.name.gosu"
                 key="gwservices.gosu.productmodelsynch"
                 displayName="Check for ProductModel synchronization"
                 shortName="CheckProductModelSynch" enabledByDefault="true"
@@ -114,7 +102,7 @@
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.group.name"
+                groupKey="gwservices.group.name.gosu"
                 key="gwservices.gosu.activityPatternComparison"
                 displayName="Check for ActivityPattern comparison"
                 shortName="CheckActivityPatternComparison"
@@ -129,7 +117,7 @@
                 groupKey="gwservices.gosu.collection.group.name"
                 key="gwservices.gosu.collections.where.haselements"
                 displayName="Use of where(...).HasElements"
-                shortName="CheckCollectionWhereHasElements"
+                shortName="CheckWhereWithLimitingFunction"
                 enabledByDefault="true" level="WARNING"/>
 
         <localInspection
@@ -139,8 +127,7 @@
                 bundle="com.gwservices.inspections.GwServicesBundle"
                 groupKey="gwservices.gosu.collection.group.name"
                 key="gwservices.gosu.collection.wherecount"
-                displayName="check for countWhere(...)"
-                shortName="CheckCollectionWhereCount" enabledByDefault="true"
+                shortName="CheckCollectionWhereCountEqualsOneOrZero" enabledByDefault="true"
                 level="WARNING"/>
 
         <localInspection
@@ -148,36 +135,100 @@
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
+                groupKey="gwservices.group.name.gosu.query"
                 key="gwservices.gosu.query.select.countwhere"
                 shortName="CheckSelectCountWhereEqualsZeroOrOne" enabledByDefault="true"
                 level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.gosu.CheckNullsafe"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
-                key="gwservices.gosu.nullsafe"
-                shortName="CheckNullsafe" enabledByDefault="true"
-                level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.util.TestInspection"
-                language="Gosu"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.collection.group.name"
-                key="gwservices.testinspection"
-                shortName="TestInspection" enabledByDefault="true"
-                level="WARNING"/>
+        <!-- <localInspection
+                 implementationClass="com.gwservices.inspections.gosu.CheckNullsafe"
+                 language="Gosu"
+                 groupPath="Gosu,GW Services Rules"
+                 bundle="com.gwservices.inspections.GwServicesBundle"
+                 groupKey="gwservices.group.name.gosu"
+                 key="gwservices.gosu.nullsafe"
+                 shortName="CheckNullsafe" enabledByDefault="true"
+                 level="WARNING"/>-->
+
         <globalInspection
                 implementationClass="com.gwservices.inspections.file.FileDifferenceFromBaseInspection"
                 language="Gosu"
                 groupPath="Gosu,GW Services Rules"
                 bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.gosu.general.group.name"
+                groupKey="gwservices.group.name.gosu.general"
                 key="gwservices.general.filesize"
                 shortName="FileDifferenceFromBase" enabledByDefault="true"
+                level="WARNING"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.CheckQueryInProductModel"
+                language="XML"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.group.name.productmodel"
+                key="gwservices.gosu.productmodel.queryinavailability"
+                shortName="CheckQueryInProductModel" enabledByDefault="true"
+                level="WARNING"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.metrics.method.CheckMethodCyclomaticComplexity"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.methodmetrics.group.name"
+                key="gwservices.gosu.cyclomatic.class"
+                shortName="OverlyComplexMethod" enabledByDefault="true"
+                level="INFO"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.metrics.method.MethodCouplingInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.methodmetrics.group.name"
+                key="gwservices.gosu.methodmetrics.excessivecoupling"
+                shortName="MethodCouplingInspection" enabledByDefault="true"
+                level="INFO"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.metrics.method.CheckTooManyParametersInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.gosu.methodmetrics.group.name"
+                key="gwservices.gosu.methodmetrics.numberofparameters"
+                shortName="MethodTooManeyParameters" enabledByDefault="true"
+                level="INFO"/>
+        <!-- <localInspection implementationClass="com.gwservices.inspections.metrics.entity.NumberOfColumnsInspection"
+                          language="XML"
+                          groupPath="Gosu,GW Services Rules"
+                          bundle="com.gwservices.inspections.GwServicesBundle"
+                          groupKey="gwservices.group.name.entity"
+                          key="gwservices.gosu.entitymetrics.numberofcolumns"
+                          shortName="NumberOfColumns" enabledByDefault="true"
+                          level="INFO"/>-->
+        <localInspection
+                implementationClass="com.gwservices.inspections.gosu.language.CheckBigDecimalInstantiationInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.group.name.gosu.general"
+                key="gwservices.gosu.general.bignumber"
+                shortName="BigDecimalInstantiation" enabledByDefault="true"
+                level="WARNING"/>
+        <localInspection
+                implementationClass="com.gwservices.inspections.gosu.language.CheckBigDecimalValuOfInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.group.name.gosu.general"
+                key="gwservices.gosu.general.bignumber.valueof"
+                shortName="BigDecimalValuOf" enabledByDefault="true"
+                level="WARNING"
+        />
+        <localInspection
+                implementationClass="com.gwservices.inspections.gosu.language.CheckNewEntityBundleImplInspection"
+                language="Gosu"
+                groupPath="Gosu,GW Services Rules"
+                bundle="com.gwservices.inspections.GwServicesBundle"
+                groupKey="gwservices.group.name.gosu.general"
+                key="gwservices.gosu.general.newentitybundleimpl"
+                shortName="NewEntityBundleImpl" enabledByDefault="true"
                 level="WARNING"/>
     </extensions>
 </idea-plugin>

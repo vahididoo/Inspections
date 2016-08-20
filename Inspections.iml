@@ -15,9 +15,10 @@
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/gw/gosu" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/gwservices/inspections/entity" />
       <excludeFolder url="file://$MODULE_DIR$/src/test" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="jdk" jdkName="IntelliJ IDEA Community Edition IC-143.2287.1" jdkType="IDEA JDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="org.apache.commons:commons-csv:1.4" level="project" />
     <orderEntry type="library" name="org.apache.poi:ooxml-schemas:1.3" level="project" />
     <orderEntry type="library" name="org.apache.poi:poi-ooxml:3.14" level="project" />

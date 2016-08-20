@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.*;
 public class GosuNullityInference extends NullityInference {
 
     public static Nullness inferNullity(final PsiMethod method) {
- /*   if (!InferenceFromSourceUtil.shouldInferFromSource(method)) {
+/*    if (!InferenceFromSourceUtil.shouldInferFromSource(method)) {
       return Nullness.UNKNOWN;
     }*/
 

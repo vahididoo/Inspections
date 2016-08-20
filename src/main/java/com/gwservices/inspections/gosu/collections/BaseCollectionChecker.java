@@ -7,7 +7,7 @@ import com.intellij.psi.util.*;
 /**
  * Created by vmansoori on 7/31/2016.
  */
-public abstract class BaseCollectionChecker extends BaseCallerCalleeInspection {
+public abstract class BaseCollectionChecker extends BaseCallerCalleeChecker {
 
     @Override
     protected boolean isCallerOfInterestedType(PsiType returnType) {
