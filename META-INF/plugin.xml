@@ -9,6 +9,11 @@
         <![CDATA[
         <p>2.0.6:
         <ul>
+        <li> Removed check for complex Visible/Available due to number of false positives.</li>
+        </ul>
+        </p>
+        <p>2.0.6:
+        <ul>
         <li> Added quick fix for new Date()</li>
         <li> Added quick fix for new BigDecimal(), new BigInteger()</li>
         <li> Base.zip is only checked for module configuration</li>
@@ -60,17 +65,6 @@
                 key="gwservices.pcf.postonchange"
                 displayName="Check for PostOnChange"
                 shortName="CheckPostOnCheck" enabledByDefault="true"
-                level="WARNING"/>
-        <localInspection
-                implementationClass="com.gwservices.inspections.pcf.CheckComplexVisibleAvailableCheck"
-                language="XML"
-                groupPath="Gosu,GW Services Rules"
-                bundle="com.gwservices.inspections.GwServicesBundle"
-                groupKey="gwservices.group.name.pcf"
-                key="gwservices.pcf.complexvisibleavailable"
-                displayName="Check for complex visible/available conditions"
-                shortName="CheckComplexVisibleAvailableCheck"
-                enabledByDefault="true"
                 level="WARNING"/>
         <localInspection
                 implementationClass="com.gwservices.inspections.pcf.CheckHardcodedLabel"
