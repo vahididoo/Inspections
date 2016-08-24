@@ -1,17 +1,27 @@
 package com.gwservices.inspections.gosu;
 
+import com.gwservices.inspections.metrics.method.*;
 import com.intellij.codeInsight.*;
 import com.intellij.codeInspection.*;
-import com.intellij.codeInspection.ex.*;
+import com.intellij.codeInspection.ui.*;
 import com.intellij.psi.*;
+import com.intellij.util.ui.*;
+import com.siyeh.ig.ui.*;
 import gw.gosu.ij.psi.*;
 import gw.gosu.ij.psi.impl.source.tree.*;
 import org.jetbrains.annotations.*;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by vmansoori on 8/1/2016.
  */
-public abstract class BaseCallerCalleeChecker extends BaseLocalInspectionTool {
+public abstract class BaseCallerCalleeChecker extends BaseParametrizedInspectionTool {
+    public abstract ExternalizableStringSet getCallerList();
+
+    public abstract ExternalizableStringSet getCalledList();
+
     protected abstract boolean isCallerOfInterestedType(PsiType returnType);
 
     protected abstract boolean isCalledOfInterestedType(PsiType returnType);
@@ -70,7 +80,7 @@ public abstract class BaseCallerCalleeChecker extends BaseLocalInspectionTool {
     }
 
     protected void checkComparisonWithOneOrZero(@NotNull PsiBinaryExpression expression, ProblemsHolder holder) {
-      PsiExpression rOperand = expression.getROperand();
+        PsiExpression rOperand = expression.getROperand();
         if (rOperand != null) {
             if (rOperand.getType() != null && (rOperand.getType().equalsToText("int") || rOperand.getType()
                                                                                                  .equalsToText
@@ -156,5 +166,24 @@ public abstract class BaseCallerCalleeChecker extends BaseLocalInspectionTool {
                 }
             }
         }
+    }
+
+    @Nullable
+    @Override
+    public JComponent createOptionsPanel() {
+        final JPanel panel = new JPanel(new GridLayout(1, 2, UIUtil.DEFAULT_HGAP, UIUtil.DEFAULT_VGAP));
+        if (null != getCallerList()) {
+            final ListTable table1 = new ListTable(new ListWrappingTableModel(getCallerList(), "Caller"));
+            final JPanel tablePanel1 = UiUtils.createAddRemovePanel(table1);
+            panel.add(tablePanel1);
+
+        }
+        if (null != getCalledList()) {
+            final ListTable table2 = new ListTable(new ListWrappingTableModel(getCalledList(), "Called"));
+            final JPanel tablePanel2 = UiUtils.createAddRemovePanel(table2);
+            panel.add(tablePanel2);
+
+        }
+        return panel;
     }
 }

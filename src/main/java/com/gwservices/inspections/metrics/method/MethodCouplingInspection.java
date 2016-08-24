@@ -49,8 +49,9 @@ public class MethodCouplingInspection extends BaseParametrizedInspectionTool {
                 methodCouplingVisitor.visitMethod(method);
                 int numDependencies = methodCouplingVisitor.getNumDependencies();
                 if (numDependencies > threshold) {
-                    holder.registerProblem(method, "Number of coupling " + numDependencies + "exceeds the threshold "
-                            + "of " + threshold, ProblemHighlightType.INFORMATION);
+                    holder.registerProblem(method, "The amount of coupling " + numDependencies + " in method "
+                            + "<code>#ref</code> exceeds the threshold " + "of " + threshold, ProblemHighlightType
+                            .INFORMATION);
                 }
             }
         };

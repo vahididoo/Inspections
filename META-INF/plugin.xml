@@ -2,9 +2,24 @@
     <name>Gosu Inspections Plugin</name>
     <description>Gosu Inspection plugin
     </description>
-    <version>2.0.4</version>
+    <version>2.0.6</version>
     <vendor>Guidewire</vendor>
     <depends>gw.gosu.ij</depends>
+    <change-notes>
+        <![CDATA[
+        <p>2.0.6:
+        <ul>
+        <li> Added quick fix for new Date()</li>
+        <li> Added quick fix for new BigDecimal(), new BigInteger()</li>
+        <li> Base.zip is only checked for module configuration</li>
+        <li> PostOnChange check only flags PostOnChange without target defined.</li>
+        <li> Hardcoded label change allows empty hardcoded labels.</li>
+        <li> Removed some methods from being checked by select().limiting functions.</li>
+        </ul>
+        </p>
+]]>
+
+    </change-notes>
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
     <idea-version since-build="107.105"/>
@@ -230,5 +245,13 @@
                 key="gwservices.gosu.general.newentitybundleimpl"
                 shortName="NewEntityBundleImpl" enabledByDefault="true"
                 level="WARNING"/>
+        <localInspection implementationClass="com.gwservices.inspections.gosu.collections.TestListEditForm"
+                         language="Gosu"
+                         groupPath="Gosu,GW Services Rules"
+                         bundle="com.gwservices.inspections.GwServicesBundle"
+                         groupKey="gwservices.group.name.gosu.general"
+                         key="gwservices.gosu.general.testeditform"
+                         shortName="NewEntityBundleImpl" enabledByDefault="true"
+                         level="WARNING"/>
     </extensions>
 </idea-plugin>

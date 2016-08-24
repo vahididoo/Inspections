@@ -44,17 +44,19 @@ public class GWProductManager {
             if (ProjectManager.getInstance().getOpenProjects().length > 0 && ProjectManager.getInstance()
                                                                                            .getOpenProjects()[0]
                     .isInitialized()) {
-                String moduleFilePath = ModuleManager.getInstance(project).getModules()[0].getModuleFile().getParent
-                        ().getParent().getCanonicalPath();
-                String zipPath = moduleFilePath + File.separator + "base.zip";
-                if (zipPath != null) {
-                    try {
-                        zipFile = new ZipFile(zipPath);
-                    } catch (IOException e) {
-                        LOG.error(e);
+                Module module = ModuleManager.getInstance(project).getModules()[0];
+                if (module.getName().equalsIgnoreCase("configuration")) {
+                    String moduleFilePath = module.getModuleFile().getParent().getParent().getCanonicalPath();
+                    String zipPath = moduleFilePath + File.separator + "base.zip";
+                    if (zipPath != null) {
+                        try {
+                            zipFile = new ZipFile(zipPath);
+                        } catch (IOException e) {
+                            LOG.error(e);
+                        }
                     }
+                    instance = new GWProductManager();
                 }
-                instance = new GWProductManager();
             }
         }
         return instance;

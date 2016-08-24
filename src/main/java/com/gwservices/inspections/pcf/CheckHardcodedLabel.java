@@ -1,11 +1,11 @@
 package com.gwservices.inspections.pcf;
 
-import com.intellij.codeInspection.LocalInspectionTool;
-import com.intellij.codeInspection.ProblemsHolder;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.xml.XmlAttribute;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.codeInspection.*;
+import com.intellij.openapi.util.text.*;
+import com.intellij.psi.*;
+import com.intellij.psi.xml.*;
+import org.apache.commons.lang.*;
+import org.jetbrains.annotations.*;
 
 /**
  * Created by vmansoori on 7/18/2016.
@@ -21,8 +21,14 @@ public class CheckHardcodedLabel extends LocalInspectionTool {
                 if ("pcf".equalsIgnoreCase(element.getContainingFile().getVirtualFile().getExtension())) {
                     if (element instanceof XmlAttribute) {
                         if ("label".equalsIgnoreCase(((XmlAttribute) element).getLocalName())) {
-                            if (((XmlAttribute) element).getValue().startsWith("&quot;")) {
-                                holder.registerProblem(element.getParent(), "Hardcoded lables <code>" + ((XmlAttribute) element).getName() + "</code>");
+                            String value = ((XmlAttribute) element).getValue();
+                            if (value != null && value.trim().startsWith("&quot;")) {
+                                String unescapeHtml = StringEscapeUtils.unescapeHtml(StringUtils.substringBetween
+                                        (value, "&quot;"));
+                                if (unescapeHtml != null && !StringUtil.isEmptyOrSpaces(unescapeHtml)) {
+                                    holder.registerProblem(element.getParent(), "Hardcoded lables <code>" + (
+                                            (XmlAttribute) element).getName() + "</code>");
+                                }
                             }
                         }
                     }

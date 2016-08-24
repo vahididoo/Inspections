@@ -2,16 +2,16 @@ package com.gwservices.inspections.gosu.collections;
 
 import com.intellij.codeInspection.*;
 import com.intellij.psi.*;
-
-import java.util.*;
+import com.siyeh.ig.ui.*;
 
 /**
  * Created by vmansoori on 8/2/2016.
  */
 public class CheckWhereWithLimitingFunction extends BaseCollectionChecker {
-    private static final List<String> interestedCalledKeywords = Arrays.asList("haselements", "wheretypeis",
-            "contains", "firstwhere", "first", "single", "singlewhere", "where");
-    private static final List<String> interestedCallerKeywords = Arrays.asList("wheretypeis", "where");
+    private static final ExternalizableStringSet interestedCalledKeywords = new ExternalizableStringSet
+            ("haselements", "wheretypeis", "contains", "firstwhere", "first", "single", "singlewhere", "where");
+    private static final ExternalizableStringSet interestedCallerKeywords = new ExternalizableStringSet
+            ("wheretypeis", "where");
 
     @Override
     protected boolean isCalledOfInterestedType(PsiType returnType) {
@@ -31,7 +31,16 @@ public class CheckWhereWithLimitingFunction extends BaseCollectionChecker {
 
     @Override
     protected void registerProblem(PsiElement expression, ProblemsHolder holder) {
-        holder.registerProblem(expression, "Use of <code>#ref</code>", ProblemHighlightType
-                .GENERIC_ERROR_OR_WARNING);
+        holder.registerProblem(expression, "Use of <code>#ref</code>", ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
+    }
+
+    @Override
+    public ExternalizableStringSet getCallerList() {
+        return interestedCallerKeywords;
+    }
+
+    @Override
+    public ExternalizableStringSet getCalledList() {
+        return interestedCalledKeywords;
     }
 }

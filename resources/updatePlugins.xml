@@ -1,0 +1,4 @@
+<plugins>
+    <plugin id="gw.services.plugins.inspection" url="http://www.appurate.com/gwplugins/Inspections.zip"
+            version="2.0.6"/>
+</plugins>
