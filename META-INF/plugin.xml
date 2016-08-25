@@ -7,13 +7,13 @@
     <depends>gw.gosu.ij</depends>
     <change-notes>
         <![CDATA[
-        <p>2.0.6:
+        <p>2.0.7:
         <ul>
         <li> Removed check for complex Visible/Available due to number of false positives.</li>
         </ul>
         </p>
         <p>2.0.6:
-        <ul>
+        <ul>0
         <li> Added quick fix for new Date()</li>
         <li> Added quick fix for new BigDecimal(), new BigInteger()</li>
         <li> Base.zip is only checked for module configuration</li>
