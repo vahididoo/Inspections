@@ -1,9 +1,10 @@
 <idea-plugin version="2">
     <name>Gosu Inspections Plugin</name>
-    <description>Gosu Inspection plugin
+    <description>A series of inspections to check for typical functional and performance issues.
     </description>
-    <version>2.0.6</version>
+    <version>2.0.7.1</version>
     <vendor>Guidewire</vendor>
+    <id>gw.services.plugins.inspection</id>
     <depends>gw.gosu.ij</depends>
     <change-notes>
         <![CDATA[
@@ -14,7 +15,7 @@
         </p>
         <p>2.0.6:
         <ul>0
-        <li> Added quick fix for new Date()</li>
+        <li> Added quick fix for new Date()</li>git
         <li> Added quick fix for new BigDecimal(), new BigInteger()</li>
         <li> Base.zip is only checked for module configuration</li>
         <li> PostOnChange check only flags PostOnChange without target defined.</li>
@@ -25,6 +26,7 @@
 ]]>
 
     </change-notes>
+
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
     <idea-version since-build="107.105"/>
